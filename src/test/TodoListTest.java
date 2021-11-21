@@ -1,19 +1,21 @@
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import tdd.todo.Task;
 import tdd.todo.TodoList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TodoListTest {
 
     TodoList list;
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() {
         list = new TodoList();
     }
 
-    @org.junit.jupiter.api.AfterEach
+    @AfterEach
     void tearDown() {
         list = null;
     }
@@ -24,21 +26,21 @@ public class TodoListTest {
 
         String message = list.addTask(newTask);
 
-        assertEquals(message,"Pomyślnie dodano zadanie");
+        assertEquals("Pomyślnie dodano zadanie",message);
 
         Task[] tasks = list.getTasks();
 
-        assertEquals(tasks.length,1);
+        assertEquals(1,list.getTaskCount());
 
-        assertEquals(tasks[0].getDescription(),newTask.getDescription());
+        assertEquals(newTask.getDescription(),tasks[0].getDescription());
     }
 
     @Test
     public void shouldGrowDefaultSizeIfMoreTaskAdded(){
 
-        int maxSize = list.getDynamicSize();
+        int maxSize = list.getTasks().length;
 
-        for(int i=0;i<maxSize-1;i++){
+        for(int i=0;i<maxSize;i++){
             Task newTask = new Task("opis zadania" + i);
             list.addTask(newTask);
         }
@@ -47,15 +49,15 @@ public class TodoListTest {
 
         String message = list.addTask(newTask);
 
-        assertEquals(message,"Pomyślnie dodano zadanie");
+        assertEquals("Pomyślnie dodano zadanie",message);
 
         Task[] tasks = list.getTasks();
 
-        assertEquals(tasks.length,maxSize+1);
+        assertEquals(maxSize+1,list.getTaskCount());
 
-        assertEquals(tasks[maxSize+1].getDescription(),newTask.getDescription());
+        assertEquals(tasks[list.getTaskCount()-1].getDescription(),newTask.getDescription());
 
-        assertEquals(list.getDynamicSize(),maxSize*2);
+        assertEquals(maxSize*2,list.getTasks().length);
     }
 
     @Test
@@ -64,28 +66,28 @@ public class TodoListTest {
 
         String message = list.addTask(newTask);
 
-        assertEquals(message,"Pomyślnie dodano zadanie");
+        assertEquals("Pomyślnie dodano zadanie",message);
 
         Task newTaskCopy = new Task("opis zadania");
 
         String messageCopy = list.addTask(newTask);
 
-        assertEquals(messageCopy,"Istnieje zadanie z takim opisem");
+        assertEquals("Istnieje zadanie z takim opisem",messageCopy);
 
         Task[] tasks = list.getTasks();
 
-        assertEquals(tasks.length,1);
+        assertEquals(1,list.getTaskCount());
     }
 
     @Test
     public void shouldNotAddOneTaskToListIfTaskIsNull(){
         String message = list.addTask(null);
 
-        assertEquals(message,"Nieprawidłowe zadanie.");
+        assertEquals("Nieprawidłowe zadanie.",message);
 
         Task[] tasks = list.getTasks();
 
-        assertEquals(tasks.length,0);
+        assertEquals(0,list.getTaskCount());
     }
 
 }
