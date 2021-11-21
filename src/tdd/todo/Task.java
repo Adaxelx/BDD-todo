@@ -2,7 +2,7 @@ package tdd.todo;
 
 public class Task {
 
-    String description;
+    private String description;
 
     public Task(String description) {
         this.description = description;
