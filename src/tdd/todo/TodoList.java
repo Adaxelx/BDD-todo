@@ -8,4 +8,8 @@ public class TodoList {
     public Task[] getTasks() {
         return null;
     }
+
+    public int getDynamicSize() {
+        return 0;
+    }
 }
