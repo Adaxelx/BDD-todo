@@ -24,6 +24,20 @@ public class TodoList {
         return "Pomyślnie dodano zadanie";
     }
 
+    public String deleteTask(int index) {
+        if(tasks.size() == 0) {
+            return "Lista zadań jest pusta.";
+        }
+        if(index < 0) {
+            return "Nieprawidłowy indeks zadania.";
+        }
+        if(index > tasks.size()-1) {
+            return "Brak zadania o takim indeksie.";
+        }
+        tasks.remove(index);
+        return "Pomyślnie usunięto zadanie.";
+    }
+
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }

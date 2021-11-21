@@ -90,4 +90,35 @@ public class TodoListTest {
         assertEquals(0, list.getTaskCount());
     }
 
+    @Test
+    public void shouldDeleteTask() {
+        Task newTask = new Task("opis zadania");
+        list.addTask(newTask);
+        assertEquals(1, list.getTaskCount());
+        String message = list.deleteTask(0);
+        assertEquals(0, list.getTaskCount());
+        assertEquals("Pomyślnie usunięto zadanie.", message);
+    }
+
+    @Test
+    public void shouldReturnErrorIfListIsEmpty() {
+        String message = list.deleteTask(0);
+        assertEquals("Lista zadań jest pusta.", message);
+    }
+
+    @Test
+    public void shouldReturnErrorIfInvalidIndex() {
+        Task newTask = new Task("opis zadania");
+        list.addTask(newTask);
+        String message = list.deleteTask(-1);
+        assertEquals("Nieprawidłowy indeks zadania.", message);
+    }
+
+    @Test
+    public void shouldReturnErrorIfIndexOutOfBounds() {
+        Task newTask = new Task("opis zadania");
+        list.addTask(newTask);
+        String message = list.deleteTask(1);
+        assertEquals("Brak zadania o takim indeksie.", message);
+    }
 }
