@@ -1,9 +1,11 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-//import tdd.todo.Task;
-//import tdd.todo.TodoList;
+import tdd.todo.Task;
+import tdd.todo.TodoList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -74,8 +76,6 @@ public class TodoListTest {
 
         assertEquals("Istnieje zadanie z takim opisem", messageCopy);
 
-        ArrayList<Task> tasks = list.getTasks();
-
         assertEquals(1, list.getTaskCount());
     }
 
@@ -84,8 +84,6 @@ public class TodoListTest {
         String message = list.addTask(null);
 
         assertEquals("Nieprawidłowe zadanie.",message);
-
-        ArrayList<Task> tasks = list.getTasks();
 
         assertEquals(0, list.getTaskCount());
     }
@@ -139,5 +137,72 @@ public class TodoListTest {
         assertEquals("Brak zadania o takim numerze", result);
     }
 
+    @Test
+    public void shouldNotGetOneTaskIfGiveInvalidTaskNumber()
+    {
+        String result = list.getOneTask(-1);
+        assertEquals("Brak zadania o takim numerze", result);
+    }
 
+    @Test
+    public void shouldUpdateTaskIfGiveProperTaskNumber() {
+        Task task = new Task("test");
+        boolean stateBefore = task.getState();
+        list.addTask(task);
+        int taskNumber = 0;
+
+        String resultMessage = list.updateTask(taskNumber);
+        boolean resultName = task.getState();
+
+        String expectedMessage = "Zadanie zostało zaktualizowane!";
+        assertEquals(expectedMessage, resultMessage);
+        assertEquals(!stateBefore, resultName);
+    }
+
+    @Test
+    public void shouldUpdateTaskTwoTimes() {
+        Task task = new Task("test");
+        boolean stateBefore = task.getState();
+        list.addTask(task);
+        int taskNumber = 0;
+
+        String resultMessage = list.updateTask(taskNumber);
+        boolean resultName = task.getState();
+
+        String expectedMessage = "Zadanie zostało zaktualizowane!";
+        assertEquals(expectedMessage, resultMessage);
+        assertEquals(!stateBefore, resultName);
+
+        stateBefore = task.getState();
+
+        resultMessage = list.updateTask(taskNumber);
+        resultName = task.getState();
+
+        assertEquals(expectedMessage, resultMessage);
+        assertEquals(!stateBefore, resultName);
+    }
+
+    @Test
+    public void shouldNotUpdateTaskIfGiveInvalidTaskNumber() {
+        Task task = new Task("test");
+        list.addTask(task);
+        int taskNumber = -1;
+
+        String result = list.updateTask(taskNumber);
+
+        String expected = "Podano nieprawidłowy numer zadania!";
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void shouldNotUpdateTaskIfGiveNotExistTaskNumber() {
+        Task task = new Task("test");
+        list.addTask(task);
+        int taskNumber = 2;
+
+        String result = list.updateTask(taskNumber);
+
+        String expected = "Zadanie o podanym numerze nie istnieje!";
+        assertEquals(expected, result);
+    }
 }
