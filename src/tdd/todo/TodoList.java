@@ -1,7 +1,4 @@
-package tdd.todo;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TodoList {
 
@@ -44,5 +41,14 @@ public class TodoList {
 
     public int getTaskCount(){
         return tasks.size();
+    }
+
+    public String getOneTask(int i) {
+        if (i < tasks.size()) {
+            return tasks.get(i).getDescription();
+        }
+        else {
+            return "Brak zadania o takim numerze";
+        }
     }
 }
