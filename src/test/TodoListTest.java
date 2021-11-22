@@ -4,9 +4,13 @@ import tdd.todo.Task;
 import tdd.todo.TodoList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class TodoListTest {
@@ -202,6 +206,55 @@ public class TodoListTest {
         String result = list.updateTask(taskNumber);
 
         String expected = "Zadanie o podanym numerze nie istnieje!";
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void shouldReturnErrorIfListIsEmptyToSavingToFile() {
+        String result = list.saveToFile();
+
+        String expected = "Nie ma zadań do zapisania!";
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void shouldReturnMessagesWithPath() {
+        Task task = new Task("test");
+        list.addTask(task);
+
+        String result = list.saveToFile();
+
+        String dir = System.getProperty("user.dir");
+        dir += "\\savedTasksFiles\\TodoList.txt";
+
+        String expected = "Pomyślnie zapisano do pliku o ścieżce: " + dir;
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void shouldSaveTaskInFile() {
+        Task task = new Task("test");
+        list.addTask(task);
+        list.saveToFile();
+
+        String dir = System.getProperty("user.dir");
+        dir += "\\savedTasksFiles\\TodoList.txt";
+
+        String result = "";
+        Path path = Path.of(dir);
+        try {
+            result = Files.readString(path);
+        } catch (IOException e) {
+            assertEquals(1,0);
+        }
+
+        String expected = "Lista zadań\n" +
+                "\n" +
+                "Zadanie 1\n" +
+                "Status: niewykonane\n" +
+                "Opis: test";
+
         assertEquals(expected, result);
     }
 }

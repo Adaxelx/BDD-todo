@@ -64,4 +64,12 @@ public class TodoList {
             return "Zadanie zostało zaktualizowane!";
         }
     }
+
+    public String saveToFile() {
+        return "messages with path";
+    }
+
+    public String saving() {
+        return "path";
+    }
 }
