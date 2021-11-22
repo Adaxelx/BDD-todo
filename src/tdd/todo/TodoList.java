@@ -53,4 +53,15 @@ public class TodoList {
             return "Brak zadania o takim numerze!";
         }
     }
+
+    public String updateTask(int i){
+        if(i > tasks.size() - 1) {
+            return "Zadanie o podanym numerze nie istnieje!";
+        } else if(i < 0){
+            return "Podano nieprawidłowy numer zadania!";
+        } else {
+            tasks.get(i).updateState();
+            return "Zadanie zostało zaktualizowane!";
+        }
+    }
 }
