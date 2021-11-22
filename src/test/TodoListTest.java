@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import tdd.todo.Task;
-import tdd.todo.TodoList;
+//import tdd.todo.Task;
+//import tdd.todo.TodoList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -121,4 +121,23 @@ public class TodoListTest {
         String message = list.deleteTask(1);
         assertEquals("Brak zadania o takim indeksie.", message);
     }
+
+    @Test
+    public void shouldGetOneTask()
+    {
+        String taskDescription = "task";
+        Task newTask = new Task(taskDescription);
+        list.addTask(newTask);
+        String result = list.getOneTask(0);
+        assertEquals(taskDescription, result);
+    }
+
+    @Test
+    public void shouldReturnErrorIfTaskNotExists()
+    {
+        String result = list.getOneTask(10);
+        assertEquals("Brak zadania o takim numerze", result);
+    }
+
+
 }
