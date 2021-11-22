@@ -1,5 +1,6 @@
 package tdd.todo;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -82,6 +83,8 @@ public class TodoList {
 
     public String saving() {
         String dir = System.getProperty("user.dir");
+        new File(dir + "\\savedTasksFiles").mkdir();
+
         Path path = Path.of(dir + "\\savedTasksFiles\\TodoList.txt");
 
         int n = 0;
