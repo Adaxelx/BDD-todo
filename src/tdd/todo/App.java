@@ -81,9 +81,16 @@ public class App {
         if(tasksList.size() == 0){
             System.out.println("Brak zadań na liście!");
         } else {
-            System.out.println("Lista zadań\n");
+            System.out.println("Lista zadań");
             for(int i =0; i < tasksList.size(); i++){
-                System.out.println("Zadanie " + (i + 1) + ": " + tasksList.get(i).getDescription());
+                String state;
+                if(tasksList.get(i).getState()){
+                    state = "wykonane";
+                } else {
+                    state = "niewykonane";
+                }
+                System.out.println("\nZadanie " + (i + 1) + "\nStatus: " + state + "\nOpis: "
+                        + tasksList.get(i).getDescription());
             }
         }
     }
@@ -91,15 +98,18 @@ public class App {
     private void getTask() {
         int taskNumber;
 
-        try {
-            System.out.print(("Podaj numer zadania, które chcesz wyświetlić: "));
-            taskNumber = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            scanner.nextLine();
-            taskNumber = -1;
+        if(todoList.getTaskCount() == 0){
+            System.out.println("Brak zadań na liście!");
+        } else {
+            try {
+                System.out.print(("Podaj numer zadania, które chcesz wyświetlić: "));
+                taskNumber = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                taskNumber = -1;
+            }
+            System.out.println(todoList.getOneTask(taskNumber - 1));
         }
-
-        System.out.println(todoList.getOneTask(taskNumber - 1));
     }
 
     private void addTask() {
@@ -111,10 +121,21 @@ public class App {
     }
 
     private void updateTask() {
-        System.out.print(("Wpisz treść zadania: "));
-        String description = scanner.nextLine();
-        Task task = new Task(description);
-        System.out.println(todoList.addTask(task));
+        int taskNumber;
+
+        if(todoList.getTaskCount() == 0){
+            System.out.println("Brak zadań na liście!");
+        } else {
+            try {
+                System.out.print(("Podaj numer zadania, które chcesz zaktualizować: "));
+                taskNumber = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                taskNumber = -1;
+            }
+            System.out.println(todoList.updateTask(taskNumber - 1));
+
+        }
     }
 
     private void deleteTask() {
@@ -133,6 +154,7 @@ public class App {
 
     public void exit() {
         status = 0;
+        scanner.close();
         System.out.println("ToDo lista została zamknięta!");
     }
 
