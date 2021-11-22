@@ -1,3 +1,5 @@
+package tdd.todo;
+
 import java.util.ArrayList;
 
 public class TodoList {
@@ -44,11 +46,11 @@ public class TodoList {
     }
 
     public String getOneTask(int i) {
-        if (i < tasks.size()) {
+        if (i < tasks.size() && i >= 0) {
             return tasks.get(i).getDescription();
         }
         else {
-            return "Brak zadania o takim numerze";
+            return "Brak zadania o takim numerze!";
         }
     }
 }
