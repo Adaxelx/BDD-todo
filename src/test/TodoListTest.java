@@ -238,10 +238,14 @@ public class TodoListTest {
     public void shouldSaveTaskInFile() {
         Task task = new Task("test");
         list.addTask(task);
-        list.saveToFile();
 
         String dir = System.getProperty("user.dir");
         dir += "\\savedTasksFiles\\TodoList.txt";
+
+        try {
+            Files.delete(Path.of(dir));
+        } catch (IOException e) {}
+        list.saveToFile();
 
         String result = "";
         Path path = Path.of(dir);
