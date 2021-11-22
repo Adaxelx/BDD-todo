@@ -4,7 +4,6 @@ import tdd.todo.Task;
 import tdd.todo.TodoList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -134,14 +133,14 @@ public class TodoListTest {
     public void shouldReturnErrorIfTaskNotExists()
     {
         String result = list.getOneTask(10);
-        assertEquals("Brak zadania o takim numerze", result);
+        assertEquals("Brak zadania o takim numerze!", result);
     }
 
     @Test
     public void shouldNotGetOneTaskIfGiveInvalidTaskNumber()
     {
         String result = list.getOneTask(-1);
-        assertEquals("Brak zadania o takim numerze", result);
+        assertEquals("Brak zadania o takim numerze!", result);
     }
 
     @Test
