@@ -223,10 +223,12 @@ public class TodoListTest {
         Task task = new Task("test");
         list.addTask(task);
 
-        String result = list.saveToFile();
-
         String dir = System.getProperty("user.dir");
         dir += "\\savedTasksFiles\\TodoList.txt";
+        try {
+            Files.delete(Path.of(dir));
+        } catch (IOException e) {}
+        String result = list.saveToFile();
 
         String expected = "Pomyślnie zapisano do pliku o ścieżce: " + dir;
         assertEquals(expected, result);

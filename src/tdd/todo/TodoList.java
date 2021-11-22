@@ -1,5 +1,8 @@
 package tdd.todo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class TodoList {
@@ -66,10 +69,45 @@ public class TodoList {
     }
 
     public String saveToFile() {
-        return "messages with path";
+        if (tasks.size() == 0){
+            return "Nie ma zadań do zapisania!";
+        }
+        String path = saving();
+        if (path == null){
+            return "Zapis nie powiódł się.";
+        } else {
+            return "Pomyślnie zapisano do pliku o ścieżce: " + path;
+        }
     }
 
     public String saving() {
-        return "path";
+        String dir = System.getProperty("user.dir");
+        Path path = Path.of(dir + "\\savedTasksFiles\\TodoList.txt");
+
+        int n = 0;
+        while (Files.exists(path)){
+            n += 1;
+            String newPath = dir + "\\savedTasksFiles\\TodoList" + n + ".txt";
+            path = Path.of(newPath);
+        }
+
+        String content  = "Lista zadań";
+        for(int i =0; i < tasks.size(); i++){
+            String state;
+            if(tasks.get(i).getState()){
+                state = "wykonane";
+            } else {
+                state = "niewykonane";
+            }
+            content += "\n\nZadanie " + (i + 1) + "\nStatus: " + state + "\nOpis: "
+                    + tasks.get(i).getDescription();
+        }
+        try {
+            Files.writeString(path, content);
+        } catch (IOException e) {
+            return null;
+        }
+
+        return path.toString();
     }
 }

@@ -33,7 +33,8 @@ public class App {
                 + "3. Dodaj nowe zadanie\n"
                 + "4. Zaktualizuj zadanie\n"
                 + "5. Usuń zadanie\n"
-                + "6. Zakończ\n";
+                + "6. Zapisz zadania w pliku\n"
+                + "7. Zakończ\n";
 
         System.out.println(operationsList);
         int operationNumber = getInput();
@@ -70,7 +71,8 @@ public class App {
             case 3 -> addTask();
             case 4 -> updateTask();
             case 5 -> deleteTask();
-            case 6 -> exit();
+            case 6 -> savingTasks();
+            case 7 -> exit();
             default -> System.out.println("Taka opcja nie istnieje!");
         }
     }
@@ -156,6 +158,10 @@ public class App {
         status = 0;
         scanner.close();
         System.out.println("ToDo lista została zamknięta!");
+    }
+    
+    private void savingTasks() {
+        System.out.println(todoList.saveToFile());
     }
 
     public int getStatus(){
