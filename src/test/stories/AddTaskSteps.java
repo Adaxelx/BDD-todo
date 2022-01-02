@@ -38,11 +38,12 @@ public class AddTaskSteps extends Steps {
     @When("uzytkownik sprobuje dodac zadanie z opisem=<description>")
     public void addTaskToList(@Named("description") String description){
         if(description==""){
-            newTask = new Task(null);
+            message = list.addTask(null);
         }else{
             newTask = new Task(description);
+            message = list.addTask(newTask);
         }
-        message = list.addTask(newTask);
+
     }
 
     @Then("zostanie zwrocona wiadomosc=<expectedMessage> i długość listy będzie wynosić <length>")

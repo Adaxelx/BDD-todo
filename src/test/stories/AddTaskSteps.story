@@ -1,4 +1,4 @@
-Scenario: Jako uzytkownik chce dodac zadanie do listy zadan
+aScenario: Jako uzytkownik chce dodac zadanie do listy zadan
 
 Given istnieje zadanie z opisem test1
 When uzytkownik sprobuje dodac zadanie z opisem=<description>
@@ -8,4 +8,4 @@ Examples:
 |description|expectedMessage                 |length|
 |test       |Pomyślnie dodano zadanie        |2     |
 |test1      |Istnieje zadanie z takim opisem |1     |
-|           |Pomyślnie dodano zadanie        |2     |
+|           |Nieprawidłowe zadanie           |1     |
