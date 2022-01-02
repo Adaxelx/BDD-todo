@@ -1,4 +1,4 @@
-aScenario: Jako uzytkownik chce dodac zadanie do listy zadan
+Scenario: Jako uzytkownik chce dodac zadanie do listy zadan
 
 Given istnieje zadanie z opisem test1
 When uzytkownik sprobuje dodac zadanie z opisem=<description>
