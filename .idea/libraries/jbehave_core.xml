@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="jbehave.core" type="repository">
+    <properties maven-id="org.jbehave:jbehave-core:4.0.5" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jbehave/jbehave-core/4.0.5/jbehave-core-4.0.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-integration/1.3/hamcrest-integration-1.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.4/commons-io-2.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-utils/3.0.10/plexus-utils-3.0.10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/freemarker/freemarker/2.3.20/freemarker-2.3.20.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/paranamer/paranamer/2.4/paranamer-2.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.7/xstream-1.4.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
