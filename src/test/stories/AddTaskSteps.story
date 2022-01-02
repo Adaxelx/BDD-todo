@@ -8,4 +8,4 @@ Examples:
 |description|expectedMessage                 |length|
 |test       |Pomyślnie dodano zadanie        |2     |
 |test1      |Istnieje zadanie z takim opisem |1     |
-|           |Nieprawidłowe zadanie           |1     |
+|           |Nieprawidłowe zadanie.          |1     |

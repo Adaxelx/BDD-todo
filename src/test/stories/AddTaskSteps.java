@@ -16,13 +16,13 @@ public class AddTaskSteps extends Steps {
     Task newTask;
 
     @BeforeScenario
-    void setUp() {
+    public void setUp() {
         list = new TodoList();
         message = "";
     }
 
     @AfterScenario
-    void tearDown() {
+    public void tearDown() {
         list = null;
         message="";
         newTask = null;
@@ -37,7 +37,7 @@ public class AddTaskSteps extends Steps {
 
     @When("uzytkownik sprobuje dodac zadanie z opisem=<description>")
     public void addTaskToList(@Named("description") String description){
-        if(description==""){
+        if(description.length() == 0){
             message = list.addTask(null);
         }else{
             newTask = new Task(description);

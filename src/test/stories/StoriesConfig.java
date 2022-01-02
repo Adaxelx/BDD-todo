@@ -48,13 +48,13 @@ public class StoriesConfig extends JUnitStories {
 
     @Override
     public Configuration configuration() {
-        return new MostUsefulConfiguration().useStoryReporterBuilder(new StoryReporterBuilder()
-                .withDefaultFormats().withFormats(CONSOLE, TXT, HTML, XML));
+        return new MostUsefulConfiguration()
+                .useStoryReporterBuilder(new StoryReporterBuilder().withDefaultFormats().withFormats(CONSOLE, TXT, HTML));
     }
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new AddTaskSteps(), new SaveTasksToFileSteps());
+        return new InstanceStepsFactory(configuration(), new AddTaskSteps(), new UpdateTaskSteps(), new SaveTasksToFileSteps());
     }
 
     protected List<String> storyPaths() {
