@@ -1,6 +1,8 @@
 package stories;
 
 import org.jbehave.core.annotations.*;
+import org.jbehave.core.steps.Step;
+import org.jbehave.core.steps.Steps;
 import tdd.todo.Task;
 import tdd.todo.TodoList;
 
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AddTaskSteps {
+public class AddTaskSteps extends Steps {
     TodoList list;
     String message;
     Task newTask;
@@ -52,4 +54,29 @@ public class AddTaskSteps {
             assertEquals(newTask.getDescription(), tasks.get(length-1).getDescription());
         }
     }
+
+
+
+    @Given("nie ma zadań do zapisu")
+    public void emptyToDoListToSaveToFile(){
+        list = new TodoList();
+    }
+
+    @When("uzytkownik próbuje wykonac zapis do pliku")
+    public void tryToSaveEmptyToDoListToFile(){
+        message = list.saveToFile();
+    }
+
+    @Then("zapis nie jest wykonany i wyświetlany jest komunikat o braku zadań")
+    public void showResultOfSaveEmptyToDoListToFile(){
+
+        assertEquals("Nie ma zadań do zapisania!", message);
+
+        ArrayList<Task> tasks = list.getTasks();
+
+        assertEquals(0, list.getTaskCount());
+
+    }
+
+
 }
