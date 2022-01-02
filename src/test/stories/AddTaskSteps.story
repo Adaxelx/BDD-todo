@@ -1,5 +1,12 @@
-Scenario: Kiedy użytkownik doda zadanie do pustej listy pojawi się ono na liście
+Lifecycle:
+Examples:
+|description|expectedMessage                 |length|
+|test       |Pomyślnie dodano zadanie        |2     |
+|test1      |Istnieje zadanie z takim opisem |1     |
+|           |Nieprawidłowe zadanie           |1     |
 
-Given nie ma żadnych zadań
-When użytkownik spróbuje dodać zadanie z uzupełnionym opisem test
-Then zadanie zostanie dodane i pojawi się na liście zadan zadanie z opisem test
+Scenario: Jako uzytkownik chce dodac zadanie do listy zadan
+
+Given istnieje zadanie z opisem test1
+When uzytkownik sprobuje dodac zadanie z opisem=<description>
+Then zostanie zwrocona wiadomosc=<expectedMessage> i długość listy będzie wynosić <length>

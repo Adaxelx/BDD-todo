@@ -26,26 +26,30 @@ public class AddTaskSteps {
         newTask = null;
     }
 
-    @Given("nie ma żadnych zadań")
-    public void emptyToDoList(){
+    @Given("istnieje zadanie z opisem test1")
+    public void taskWithDescription(){
         list = new TodoList();
+        newTask = new Task("test1");
+        list.addTask(newTask);
     }
 
-    @When("użytkownik spróbuje dodać zadanie z uzupełnionym opisem test")
-    public void addTaskToList(){
-        newTask = new Task("test");
+    @When("uzytkownik sprobuje dodac zadanie z opisem=<description>")
+    public void addTaskToList(@Named("description") String description){
+        newTask = new Task(description);
         message = list.addTask(newTask);
     }
 
-    @Then("zadanie zostanie dodane i pojawi się na liście zadan zadanie z opisem test")
-    public void showResultOfAdd(){
+    @Then("zostanie zwrocona wiadomosc=<expectedMessage> i długość listy będzie wynosić <length>")
+    public void showResultOfAdd(@Named("expectedMessage") String expectedMessage,@Named("length")int length){
 
-        assertEquals("Pomyślnie dodano zadanie", message);
+        assertEquals(expectedMessage, message);
 
         ArrayList<Task> tasks = list.getTasks();
 
-        assertEquals(1, list.getTaskCount());
+        assertEquals(length, list.getTaskCount());
 
-        assertEquals(newTask.getDescription(), tasks.get(0).getDescription());
+        if(length !=1){
+            assertEquals(newTask.getDescription(), tasks.get(length-1).getDescription());
+        }
     }
 }
