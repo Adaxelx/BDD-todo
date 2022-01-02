@@ -54,7 +54,7 @@ public class StoriesConfig extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new AddTaskSteps());
+        return new InstanceStepsFactory(configuration(), new AddTaskSteps(), new SaveTasksToFileSteps());
     }
 
     protected List<String> storyPaths() {

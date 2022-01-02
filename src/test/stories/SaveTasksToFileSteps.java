@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SaveTasksToFileSteps extends Steps {
+public class SaveTasksToFileSteps {
 
     TodoList list;
     String message;
@@ -57,9 +57,9 @@ public class SaveTasksToFileSteps extends Steps {
     @Given("istnieją jakieś zadania na liście")
     public void notEmptyToDoList(){
         list = new TodoList();
+
         newTask = new Task("test");
         message = list.addTask(newTask);
-
         assertEquals("Pomyślnie dodano zadanie", message);
     }
 
@@ -68,16 +68,31 @@ public class SaveTasksToFileSteps extends Steps {
         message = list.saveToFile();
     }
 
-    @Then("zapis został wykonany pomyślnie i została wyświetlona ściezka do pliku")
+    @Then("zwrócony został komunikat o pomyślnym zapisaniu do pliku wraz ze ścieżką do pliku, plik zawiera wszystkie zadania")
     public void showResultOfSaveToDoListToFile(){
 
         String dir = System.getProperty("user.dir");
         dir += "\\savedTasksFiles\\TodoList.txt";
+        String expected = "Pomyślnie zapisano do pliku o ścieżce: " + dir;
+        assertEquals(expected, message);
+
+        String result = "";
+        Path path = Path.of(dir);
+        try {
+            result = Files.readString(path);
+        } catch (IOException e) {
+        }
+
+        String expectedText = "Lista zadań\n" +
+                "\n" +
+                "Zadanie 1\n" +
+                "Status: niewykonane\n" +
+                "Opis: test";
+
+        assertEquals(expectedText, result);
+
         try {
             Files.delete(Path.of(dir));
         } catch (IOException e) {}
-
-        String expected = "Pomyślnie zapisano do pliku o ścieżce: " + dir;
-        assertEquals(expected, message);
     }
 }

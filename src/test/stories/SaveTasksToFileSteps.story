@@ -11,7 +11,7 @@ Scenario: Kiedy użytkownik chce zapisać listę zadań do pliku i otrzymuje kom
 
 Given istnieją jakieś zadania na liście
 When użytkownik spróbuje wykonac zapis do pliku
-Then zapis został wykonany pomyślnie i została wyświetlona ściezka do pliku
+Then zwrócony został komunikat o pomyślnym zapisaniu do pliku wraz ze ścieżką do pliku, plik zawiera wszystkie zadania
 
 
 
