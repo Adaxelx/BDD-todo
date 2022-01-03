@@ -1,3 +1,8 @@
+Narrative:
+Jako użytkownik
+Chcę usuwać zadania z listy zadań
+Abym mógł porządkować listę
+
 Scenario: Usuwanie istniejącego zadania z indeksem 0
 
 Given lista z zadaniem z indeksem 0

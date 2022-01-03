@@ -47,7 +47,7 @@ public class AddTaskSteps extends Steps {
     }
 
     @Then("zostanie zwrocona wiadomosc=<expectedMessage> i długość listy będzie wynosić <length>")
-    public void showResultOfAdd(@Named("expectedMessage") String expectedMessage,@Named("length")int length){
+    public void showResultOfAdd(@Named("expectedMessage") String expectedMessage, @Named("length")int length){
 
         assertEquals(expectedMessage, message);
 

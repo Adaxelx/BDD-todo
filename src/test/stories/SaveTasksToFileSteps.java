@@ -13,20 +13,20 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SaveTasksToFileSteps {
+public class SaveTasksToFileSteps extends Steps{
 
     TodoList list;
     String message;
     Task newTask;
 
     @BeforeScenario
-    void setUp() {
+    public void setUp() {
         list = new TodoList();
         message = "";
     }
 
     @AfterScenario
-    void tearDown() {
+    public void tearDown() {
         list = null;
         message="";
         newTask = null;

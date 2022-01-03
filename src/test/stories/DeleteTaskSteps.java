@@ -1,24 +1,25 @@
-package stories.myTests;
+package stories;
 import org.jbehave.core.annotations.*;
+import org.jbehave.core.steps.Steps;
 import org.junit.Assert;
 import tdd.todo.Task;
 import tdd.todo.TodoList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeleteTaskSteps {
+public class DeleteTaskSteps extends Steps {
     TodoList list;
     String message;
     Task newTask;
 
     @BeforeScenario
-    void setUp() {
+    public void setUp() {
         list = new TodoList();
         message = "";
     }
 
     @AfterScenario
-    void tearDown() {
+    public void tearDown() {
         list = null;
         message="";
         newTask = null;
