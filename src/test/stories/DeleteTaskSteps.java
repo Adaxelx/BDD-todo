@@ -7,7 +7,7 @@ import tdd.todo.TodoList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeleteTaskSteps extends Steps {
+public class DeleteTaskSteps {
     TodoList list;
     String message;
     Task newTask;

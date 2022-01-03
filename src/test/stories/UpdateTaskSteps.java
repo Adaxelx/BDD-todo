@@ -8,7 +8,7 @@ import tdd.todo.TodoList;
 
 import static org.junit.Assert.*;
 
-public class UpdateTaskSteps extends Steps {
+public class UpdateTaskSteps {
     TodoList list;
     TodoList listBefore;
     String description;
